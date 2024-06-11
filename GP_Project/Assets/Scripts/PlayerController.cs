@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 10f;  // ÀÌµ¿ ¼Óµµ
-    public float mouseSensitivity = 300f;  // ¸¶¿ì½º °¨µµ
+    public int score = 0;
+    public float moveSpeed = 10f;  // ï¿½Ìµï¿½ ï¿½Óµï¿½
+    public float mouseSensitivity = 300f;  // ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½
 
-    private Rigidbody rb;
+    public Rigidbody rb;
     private Transform cameraTransform;
     private float xRotation = 0f;
 
-    // ÇÃ·¹ÀÌ¾î ÀÌµ¿ °¡´É ¿µ¿ª Á¦ÇÑ, Á¦ÇÑ ¿µ¿ª ¹üÀ§
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private float minY = -55.45f;
     private float maxY = 5f;
     private float minX = -382.5f;
@@ -19,21 +20,21 @@ public class PlayerController : MonoBehaviour
     private float minZ = -382f;
     private float maxZ = 380.6f;
 
-    // ¹° ¹Û, ¹° ¼Ó skybox ´Þ¸® ¼³Á¤ °ü·Ã º¯¼ö
-    public Material originalSkybox; // ±âÁ¸ skybox(¹° ¹Û)
-    public Material skyboxUnderWater; // ¹° ¼Ó
-    public float waterLevel = -5.5f; // ¹° ³ôÀÌ
+    // ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ ï¿½ï¿½ skybox ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public Material originalSkybox; // ï¿½ï¿½ï¿½ï¿½ skybox(ï¿½ï¿½ ï¿½ï¿½)
+    public Material skyboxUnderWater; // ï¿½ï¿½ ï¿½ï¿½
+    public float waterLevel = -5.5f; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         cameraTransform = Camera.main.transform;
 
-        // Ä¿¼­¸¦ Àá±Ý »óÅÂ·Î ÀüÈ¯
+        // Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // ÃÊ±â skybox ÀúÀå
+        // ï¿½Ê±ï¿½ skybox ï¿½ï¿½ï¿½ï¿½
         originalSkybox = RenderSettings.skybox;
     }
 
@@ -42,40 +43,40 @@ public class PlayerController : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        // ÇÃ·¹ÀÌ¾îÀÇ È¸Àü°ª º¯°æ (ÁÂ¿ì·Î È¸Àü)
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Â¿ï¿½ï¿½ È¸ï¿½ï¿½)
         transform.Rotate(Vector3.forward * mouseX);
 
 
-        // Ä«¸Þ¶óÀÇ È¸Àü°ª º¯°æ (À§¾Æ·¡·Î È¸Àü)
+        // Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ È¸ï¿½ï¿½)
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -0f, 180f);
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        // ÀÌµ¿ ÀÔ·Â
+        // ï¿½Ìµï¿½ ï¿½Ô·ï¿½
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        // Ä«¸Þ¶óÀÇ forward¿Í right ¹æÇâ¿¡ ´ëÇÑ º¤ÅÍ °è»ê
+        // Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ forwardï¿½ï¿½ right ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
 
-        // ÇÃ·¹ÀÌ¾îÀÇ ÀÌµ¿ ¹æÇâ °è»ê
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         Vector3 moveDirection = (forward * z + right * x).normalized;
 
-        // ÀÌµ¿ ¹æÇâÀ» ÇâÇØ ÀÌµ¿
+        // ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         Vector3 velocity = moveDirection * moveSpeed * Time.deltaTime;
         rb.MovePosition(rb.position + velocity);
 
         Vector3 newPosition = rb.position + velocity;
 
-        // »õ·Î¿î À§Ä¡(newPostion)°¡ Á¦ÇÑµÈ ¿µ¿ª ³»¿¡ ÀÖ´ÂÁö È®ÀÎÇÏ¿© ÀÌµ¿ °¡´É ¿µ¿ªÀ» Á¦ÇÑ
+        // ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Ä¡(newPostion)ï¿½ï¿½ ï¿½ï¿½ï¿½Ñµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
         newPosition.y = Mathf.Clamp(newPosition.y, minY, maxY);
         newPosition.z = Mathf.Clamp(newPosition.z, minZ, maxZ);
 
         rb.MovePosition(newPosition);
 
-        // ¹° ¼Ó °¨ÁöÇÏ¿© skybox º¯°æ
+        // ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ skybox ï¿½ï¿½ï¿½ï¿½
         if (newPosition.y < waterLevel)
         {
             RenderSettings.skybox = skyboxUnderWater;
@@ -88,6 +89,12 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        gameObject.SetActive(false); // ÀÚ±â ÀÚ½Å ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+        gameObject.SetActive(false); // ï¿½Ú±ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È°ï¿½ï¿½È­
+    }
+
+    public void AddScore(int value)
+    {
+        score += value;
+        Debug.Log("Score: " + score);
     }
 }
