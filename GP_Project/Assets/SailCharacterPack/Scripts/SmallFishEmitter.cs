@@ -30,8 +30,8 @@ public class SmallFishEmitter : MonoBehaviour {
 			actualTorque.y = Random.Range (-2, 2);
 			actualTorque.z = Random.Range (-2, 2);
 			
-			fishInstance.rigidbody.AddRelativeForce (actualForce, ForceMode.Impulse);
-			fishInstance.rigidbody.AddRelativeTorque (actualTorque, ForceMode.Impulse);
+			fishInstance.GetComponent<Rigidbody>().AddRelativeForce (actualForce, ForceMode.Impulse);
+			fishInstance.GetComponent<Rigidbody>().AddRelativeTorque (actualTorque, ForceMode.Impulse);
 
 			Destroy (fishInstance, 4);
 		}

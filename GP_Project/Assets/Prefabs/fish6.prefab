@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 1766180166799404432}
   - component: {fileID: 8860722917122455651}
   m_Layer: 0
-  m_Name: Fish_6_v2
+  m_Name: fish6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
