@@ -1383,6 +1383,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1465072181862403789, guid: 65745d1df639dd445afc0ca5fae74a9f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465072181862403789, guid: 65745d1df639dd445afc0ca5fae74a9f, type: 3}
       propertyPath: fishPrefab
       value: 
       objectReference: {fileID: 7108443669456688048, guid: 89390de47fb09384d80fc8c5f0443523, type: 3}
@@ -1486,14 +1490,6 @@ PrefabInstance:
     - target: {fileID: 5220018388448477414, guid: f65fdd4a93aa8ce4e973fa3f7de739bb, type: 3}
       propertyPath: m_Name
       value: SharkSpawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109044048706146775, guid: f65fdd4a93aa8ce4e973fa3f7de739bb, type: 3}
-      propertyPath: spawnRateMax
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 9109044048706146775, guid: f65fdd4a93aa8ce4e973fa3f7de739bb, type: 3}
-      propertyPath: spawnRateMin
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
