@@ -7,6 +7,7 @@ public class SharkSpawner : MonoBehaviour
     public GameObject sharkPrefab;
     public float spawnRateMin = 20f;
     public float spawnRateMax = 30f;
+    public int maxCloneCount = 3;
 
     private Transform target;
     private float spawnRate;
@@ -29,8 +30,14 @@ public class SharkSpawner : MonoBehaviour
         {
             timeAfterSpawn = 0f;
 
-            GameObject shark = Instantiate(sharkPrefab, transform.position, transform.rotation);
-            shark.transform.LookAt(target);
+            int cloneCount = GameObject.FindGameObjectsWithTag("Shark").Length;
+            if (cloneCount < maxCloneCount)
+            {
+                GameObject shark = Instantiate(sharkPrefab, transform.position, transform.rotation);
+                shark.transform.LookAt(target);
+            }
+
+            
 
             spawnRate = Random.Range(spawnRateMin, spawnRateMax);
         }

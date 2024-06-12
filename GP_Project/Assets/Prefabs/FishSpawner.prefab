@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bcdb1f7bd17877439994be1c45773c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishPrefab: {fileID: 0}
-  spawnRateMin: 5
+  fishPrefab: {fileID: 7108443669456688048, guid: 89390de47fb09384d80fc8c5f0443523, type: 3}
+  spawnRateMin: 3
   spawnRateMax: 10

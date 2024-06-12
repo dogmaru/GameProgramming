@@ -89,12 +89,17 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        gameObject.SetActive(false); // �ڱ� �ڽ� ������Ʈ ��Ȱ��ȭ
+        gameObject.SetActive(false);
+        
+        GameManager gameManager =FindObjectOfType<GameManager>();
+        gameManager.EndGame();
     }
 
+    /*
     public void AddScore(int value)
     {
         score += value;
         Debug.Log("Score: " + score);
     }
+    */
 }

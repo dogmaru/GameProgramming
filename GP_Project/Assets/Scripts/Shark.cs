@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Shark : MonoBehaviour
 {
-    public float speed = 50f;
+    public float speed = 60f;
     public Rigidbody sharkRB;
+    AudioSource dieAS;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,8 @@ public class Shark : MonoBehaviour
         sharkRB.velocity = transform.forward * speed;
 
         Destroy(gameObject, 30f);
+
+        dieAS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class Shark : MonoBehaviour
             if (playerController != null)
             {
                 playerController.Die();
+                dieAS.Play();
             }
         }
     }

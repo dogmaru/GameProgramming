@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class Fish : MonoBehaviour
 {
-    public float speed = 50f;
+    public float speed = 70f;
     public Rigidbody fishRB;
+    GameManager gameManager;
+    AudioSource eatAS;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+
         fishRB = GetComponent<Rigidbody>();
 
         fishRB.velocity = transform.forward * speed;
 
-        Destroy(gameObject, 70f);
+        Destroy(gameObject, 40f);
+
+        eatAS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,7 +36,8 @@ public class Fish : MonoBehaviour
  
             if (playerController != null)
             {
-                playerController.AddScore(100);
+                eatAS.Play();
+                gameManager.AddScore();
                 Destroy(gameObject);
             }
         }

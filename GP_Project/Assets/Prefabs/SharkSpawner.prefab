@@ -45,5 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sharkPrefab: {fileID: 4189724039400296964, guid: faac41ed94afcf54280ad173b8287dc8, type: 3}
-  spawnRateMin: 3
-  spawnRateMax: 30
+  spawnRateMin: 10
+  spawnRateMax: 20
+  maxCloneCount: 3
